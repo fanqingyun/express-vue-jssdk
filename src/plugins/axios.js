@@ -17,6 +17,8 @@ const uploadHeaders = {
 // 全局配置
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.get['Content-Type'] = 'application/json'
+axios.defaults.withCredentials = true // 跨域保存session
+
 // 实例配置信息
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
@@ -58,7 +60,7 @@ const handleException = (e) => {
 }
 // 下载文件处理
 const downloadFile = response => {
-  if (!response || !response.headers.exportsuccess) {
+  // if (!response || !response.headers.exportsuccess) {
     // if (!response.data.success) {
     //   this.$message({
     //     showClose: true,
@@ -67,7 +69,7 @@ const downloadFile = response => {
     //   })
     // }
     // return
-  }
+  // }
   // 在response.data前面加\ufeff是为了表示编码格式为UTF-8，否则导出的文件中文会乱码
   let url = window.URL.createObjectURL(
     new Blob(['\ufeff' + response.data])
@@ -79,18 +81,10 @@ const downloadFile = response => {
   link.click()
   window.URL.revokeObjectURL(url)
 }
-// // 封装请求的option 
-// const getOption = () => {
-//    let option = {
-//     method,
-//     url,
-//     data: method === 'POST' || method === 'PUT' ? params : null,
-//     params: method === 'GET' || method === 'DELETE' ? params : null
-//   }
-//   return option
-// }
+
 // 封装统一的方法
-function httpApi (option, callback = handleException, errHandle = downloadFile) {
+function httpApi (option, callback = downloadFile, errHandle = handleException) {
+  console.log(option)
   _axios(option)
     .then(callback)
     .catch(errHandle)

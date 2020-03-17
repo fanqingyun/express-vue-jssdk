@@ -15,10 +15,10 @@ export default {
   },
   methods: {
     testAxios () {
-      console.log('测试了零零')
-      this.$axios.post('/api/systemMgr/getSystemVersion', {}, res => {
-        console.log(res)
-      })
+      console.log('测试了')
+      // this.$axios.post('/api/testpost', { text: '这是测试参数' }, res => {
+      //   console.log(res)
+      // })
     }
   },
   mounted () {

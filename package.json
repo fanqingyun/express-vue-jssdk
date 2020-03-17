@@ -14,7 +14,8 @@
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "weixin-jsapi": "^1.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",

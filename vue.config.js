@@ -4,14 +4,14 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        // target: 'http://fqyweixin.free.idcfengye.com',
-        target: 'http://192.1.1.205:10016/systex_nbuWeb/',
+        target: 'http://fqyweixin.free.idcfengye.com',
+        // target: 'http://192.1.1.205:10016/systex_nbuWeb/',
         // target: 'http://localhost:9000',
         ws: true,
         changeOrigin: true,
-        // pathRewrite: {  // 替换，通配/api的替换成/
-        //   '^/api': '/'
-        // }
+        pathRewrite: {  // 替换，通配/api的替换成/
+          '^/api': '/'
+        }
       },
       '/other': {
         target: '<other_url>'
