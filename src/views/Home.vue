@@ -13,6 +13,14 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  methods: {
+    testAxios() {
+      
+    }
+  },
+  mounted() {
+    // this.testAxios();
   }
 }
 </script>

@@ -1,25 +1,36 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/home">Home</router-link>
       <router-link to="/child">About</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+<script>
+// import { Component, Vue } from 'vue-property-decorator';
+// import HelloWorld from './components/HelloWorld.vue';
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
+// @Component({
+//   components: {
+//     // HelloWorld,
+//   },
+// })
+export default {
+  mounted() {
+    this.$axios.post("/api/about", { url: window.location.href }, result => {
+      this.$JsApi.config(
+        result.data.appID,
+        result.data.timestamp,
+        result.data.noncestr,
+        result.data.signature
+      );
+    });
+  }
+};
 </script>
 
 <style lang="scss">
